@@ -6,13 +6,14 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
   @Get() //get/users
-  findAll() {
-    return [];
+  findAll(@Query('role') role?: 'INTERN') {
+    return [role];
   }
 
   @Get(':id') //get/users/:id
@@ -30,7 +31,6 @@ export class UsersController {
     return { id, ...userUpdate };
   }
 
-  
   @Delete(':id') //delete /users/:id
   delet(@Param('id') id: string) {
     return { id };
